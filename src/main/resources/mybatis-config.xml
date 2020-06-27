@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <!-- 读取db.properties文件 -->
+    <properties resource="db.properties" />
+
+    <settings>
+        <!-- 开启全局二级缓存 -->
+        <!-- <setting name="cacheEnabled" value="true" /> -->
+
+        <!-- 开启全局延迟加载 -->
+        <setting name="lazyLoadingEnabled" value="true"/>
+        <setting name="aggressiveLazyLoading" value="false"/>
+
+        <!-- 日志类型 -->
+        <setting name="logImpl" value="LOG4J"/>
+    </settings>
+
+    <!-- 类型别名 -->
+    <typeAliases>
+        <typeAlias type="com.example.domain.User" alias="user"/>
+    </typeAliases>
+
+    <!-- 配置数据源 -->
+    <environments default="dev">
+        <environment id="dev">
+            <!-- 配置事务。单独使用时配置成MANAGED没有事务 -->
+            <transactionManager type="JDBC"/>
+
+            <!-- 配置连接池 -->
+            <dataSource type="POOLED">
+                <property name="driver" value="${dataSource.driverClass}" />
+                <property name="url" value="${dataSource.jdbcUrl}" />
+                <!-- jdbc:mysql://192.168.209.200:3306/mybatis?serverTimezone=UTC&amp;useUnicode=true&amp;characterEncoding=UTF-8 -->
+                <property name="username" value="${dataSource.user}" />
+                <property name="password" value="${dataSource.password}" />
+            </dataSource>
+        </environment>
+    </environments>
+
+    <!-- 映射Sql.xml文件 -->
+    <mappers>
+        <mapper resource="com/example/mapper/UserMapper.xml"/>
+    </mappers>
+
+</configuration>

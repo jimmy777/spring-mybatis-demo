@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.UserMapper">
+    <insert id="save" parameterType="user" useGeneratedKeys="true" keyProperty="id">
+		insert into tb_user (name, sex, age) values (#{name}, #{sex}, #{age})
+	</insert>
+
+	<select id="selectOne" parameterType="int" resultType="user">
+		select id, name, sex, age from tb_user where id=#{id}
+	</select>
+
+	<update id="update" parameterType="user">
+		update tb_user
+		set name=#{name},sex=#{sex},age=#{age}
+		where id=#{id}
+	</update>
+
+	<delete id="delete" parameterType="int">
+		delete from tb_user
+		where id=#{id}
+	</delete>
+
+	<select id="selectMany" resultType="user">
+		select * from tb_user
+	</select>
+
+	<resultMap id="userMap" type="user">
+		<id property="id" column="id"/>
+		<result property="name" column="name"/>
+		<result property="age" column="age"/>
+	</resultMap>
+
+	<select id="selectMany2" resultMap="userMap">
+		select name, age from tb_user
+	</select>
+
+</mapper>
