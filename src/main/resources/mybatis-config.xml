@@ -20,6 +20,8 @@
     <!-- 类型别名 -->
     <typeAliases>
         <typeAlias type="com.example.domain.User" alias="user"/>
+        <typeAlias type="com.example.domain.Student" alias="student"/>
+        <typeAlias type="com.example.domain.Clazz" alias="clazz"/>
     </typeAliases>
 
     <!-- 配置数据源 -->
@@ -42,6 +44,7 @@
     <!-- 映射Sql.xml文件 -->
     <mappers>
         <mapper resource="com/example/mapper/UserMapper.xml"/>
+        <mapper resource="com/example/mapper/StudentMapper.xml"/>
     </mappers>
 
 </configuration>
